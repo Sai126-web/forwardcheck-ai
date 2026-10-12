@@ -16,3 +16,4 @@ forwardcheck.db
 .pytest_cache/
 test-results/
 playwright-report/
+.vercel/

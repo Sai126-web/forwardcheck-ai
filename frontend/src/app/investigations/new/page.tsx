@@ -128,48 +128,48 @@ function NewInvestigationForm() {
         </div>
       ) : (
         /* Step 2: Extraction Preview & Claim Review */
-        <div className="space-y-6 bg-[#141B26] border border-[#283548] rounded-xl p-6 shadow-xl">
-          <div className="flex items-center justify-between border-b border-[#283548] pb-4">
+        <div className="space-y-6 bg-[#1A140E] border-2 border-[#382619] rounded-2xl p-6 shadow-evidence">
+          <div className="flex items-center justify-between border-b border-[#342417] pb-4">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-[#35AA9E]" />
               <div>
-                <h3 className="text-sm font-bold text-[#F1F3F7]">
+                <h3 className="text-sm font-bold text-[#F1E8D9] font-mono uppercase tracking-wider">
                   Ingestion Review & Claim Pre-Decomposition
                 </h3>
-                <p className="text-xs text-[#94A3B8]">
+                <p className="text-xs text-[#A3907C]">
                   Review extracted text and adjust claims before running the verification pipeline.
                 </p>
               </div>
             </div>
             <button
               onClick={() => setExtractedData(null)}
-              className="text-xs text-[#94A3B8] hover:text-[#F1F3F7] underline"
+              className="text-xs text-[#DC2626] hover:underline font-mono"
             >
               Re-upload or change input
             </button>
           </div>
 
           {/* Title and Language settings */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono">
             <div className="sm:col-span-2">
-              <label className="text-xs font-medium text-[#94A3B8] block mb-1">
+              <label className="text-xs font-medium text-[#A3907C] block mb-1">
                 Investigation Title:
               </label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full bg-[#0B0F17] border border-[#283548] focus:border-[#6665E8] rounded-lg p-2.5 text-xs text-[#F1F3F7] outline-none"
+                className="w-full bg-[#100C08] border border-[#3D291A] focus:border-[#D97706] rounded-lg p-2.5 text-xs text-[#F1E8D9] outline-none"
               />
             </div>
             <div>
-              <label className="text-xs font-medium text-[#94A3B8] block mb-1">
+              <label className="text-xs font-medium text-[#A3907C] block mb-1">
                 Report Language:
               </label>
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
-                className="w-full bg-[#0B0F17] border border-[#283548] rounded-lg p-2.5 text-xs text-[#F1F3F7] outline-none"
+                className="w-full bg-[#100C08] border border-[#3D291A] focus:border-[#D97706] rounded-lg p-2.5 text-xs text-[#F1E8D9] outline-none"
               >
                 <option value="en">English (Default)</option>
                 <option value="hi">Hindi (हिंदी)</option>
@@ -180,14 +180,14 @@ function NewInvestigationForm() {
 
           {/* Raw Text Review */}
           <div>
-            <label className="text-xs font-medium text-[#94A3B8] block mb-1">
+            <label className="text-xs font-mono font-medium text-[#A3907C] block mb-1">
               Extracted Raw Content:
             </label>
             <textarea
               rows={4}
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="w-full bg-[#0B0F17] border border-[#283548] rounded-lg p-3 text-xs text-[#F1F3F7] outline-none"
+              className="w-full bg-[#100C08] border border-[#3D291A] focus:border-[#D97706] rounded-lg p-3 text-xs text-[#F1E8D9] outline-none font-mono"
             />
           </div>
 
@@ -195,16 +195,16 @@ function NewInvestigationForm() {
           <div className="space-y-3 pt-2">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-xs font-semibold text-[#F1F3F7]">
+                <h4 className="text-xs font-bold text-[#F1E8D9] font-mono uppercase tracking-wider">
                   Detected Atomic Claims ({claimsList.length})
                 </h4>
-                <p className="text-[11px] text-[#94A3B8]">
+                <p className="text-[11px] text-[#A3907C]">
                   Edit, add, or remove testable propositions. Pure opinions and forward commands have been separated.
                 </p>
               </div>
               <button
                 onClick={handleAddClaim}
-                className="flex items-center gap-1 text-xs bg-[#1B2331] hover:bg-[#283548] text-[#6665E8] px-2.5 py-1 rounded-md border border-[#283548] font-medium"
+                className="flex items-center gap-1 text-xs bg-[#241A12] hover:bg-[#342418] text-[#F59E0B] px-2.5 py-1 rounded-md border border-[#4D331E] font-mono font-bold"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Claim</span>
@@ -215,9 +215,9 @@ function NewInvestigationForm() {
               {claimsList.map((claim, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#0B0F17] border border-[#283548] p-3 rounded-lg flex items-start gap-3"
+                  className="bg-[#100C08] border border-[#3D291A] p-3 rounded-lg flex items-start gap-3"
                 >
-                  <span className="text-xs font-mono font-bold text-[#6665E8] pt-1">
+                  <span className="text-xs font-mono font-bold text-[#F59E0B] pt-1">
                     #{idx + 1}
                   </span>
                   <div className="flex-1 space-y-1">
@@ -225,15 +225,15 @@ function NewInvestigationForm() {
                       type="text"
                       value={claim.normalized_claim}
                       onChange={(e) => handleClaimChange(idx, e.target.value)}
-                      className="w-full bg-transparent border-b border-[#283548] focus:border-[#6665E8] text-xs text-[#F1F3F7] outline-none pb-1"
+                      className="w-full bg-transparent border-b border-[#3D291A] focus:border-[#D97706] text-xs text-[#F1E8D9] outline-none pb-1 font-mono"
                     />
-                    <p className="text-[10px] text-[#64748B] italic">
+                    <p className="text-[10px] text-[#786452] italic font-mono">
                       Source text: &quot;{claim.original_text.slice(0, 100)}...&quot;
                     </p>
                   </div>
                   <button
                     onClick={() => handleRemoveClaim(idx)}
-                    className="text-[#94A3B8] hover:text-[#E56D68] p-1 transition-colors"
+                    className="text-[#A3907C] hover:text-[#DC2626] p-1 transition-colors"
                     title="Remove Claim"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -244,8 +244,8 @@ function NewInvestigationForm() {
           </div>
 
           {/* Privacy Notice */}
-          <div className="flex items-start gap-2 bg-[#0B0F17] p-3 rounded-lg border border-[#283548] text-[11px] text-[#94A3B8]">
-            <Info className="w-4 h-4 text-[#6665E8] shrink-0 mt-0.5" />
+          <div className="flex items-start gap-2 bg-[#100C08] p-3 rounded-lg border border-[#3D291A] text-[11px] text-[#A3907C] font-mono">
+            <Info className="w-4 h-4 text-[#D97706] shrink-0 mt-0.5" />
             <span>
               <strong>Zero Surveillance Policy:</strong> Your submission is evaluated strictly for factual verification. No passive contact harvesting, chat monitoring, or automatic forwarding occurs.
             </span>
@@ -253,24 +253,24 @@ function NewInvestigationForm() {
 
           {/* Error notice */}
           {error && (
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-rose-950/40 border border-rose-500/40 text-rose-300 text-xs">
+            <div className="flex items-center gap-2 p-3 rounded-lg bg-rose-950/60 border border-rose-500/50 text-rose-300 text-xs font-mono">
               <AlertTriangle className="w-4 h-4 shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
           {/* Submit Action */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#283548]">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#342417]">
             <button
               onClick={() => setExtractedData(null)}
-              className="text-xs text-[#94A3B8] hover:text-[#F1F3F7] px-4 py-2"
+              className="text-xs text-[#A3907C] hover:text-[#F1E8D9] px-4 py-2 font-mono"
             >
               Cancel
             </button>
             <button
               onClick={handleSubmitVerification}
               disabled={submitting}
-              className="flex items-center gap-2 bg-[#6665E8] hover:bg-[#5756D1] disabled:opacity-50 text-white px-6 py-2.5 rounded-lg text-xs font-semibold shadow-lg transition-all"
+              className="flex items-center gap-2 bg-[#DC2626] hover:bg-[#B91C1C] disabled:opacity-50 text-white px-6 py-2.5 rounded-lg text-xs font-mono font-bold shadow-lg transition-all tracking-wider"
             >
               {submitting ? (
                 <>
@@ -279,7 +279,7 @@ function NewInvestigationForm() {
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-4 h-4" />
+                  <Sparkles className="w-4 h-4 text-amber-200" />
                   <span>Start Evidence Verification</span>
                   <ArrowRight className="w-4 h-4" />
                 </>

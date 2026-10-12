@@ -12,11 +12,11 @@ interface GraphInspectorProps {
 export const GraphInspector: React.FC<GraphInspectorProps> = ({ selectedNode, onClose }) => {
   if (!selectedNode) {
     return (
-      <div className="w-80 h-full bg-[#141B26] border-l border-[#283548] p-5 flex flex-col justify-center items-center text-center text-[#94A3B8]">
-        <Target className="w-10 h-10 text-[#283548] mb-3" />
-        <h4 className="text-sm font-semibold text-[#F1F3F7] mb-1">Inspector Panel</h4>
-        <p className="text-xs max-w-[200px]">
-          Click any node on the TruthGraph canvas to inspect verified citations, stances, and entities.
+      <div className="w-80 h-full bg-[#18130E] border-l border-[#3D291A] p-5 flex flex-col justify-center items-center text-center text-[#A3907C]">
+        <Target className="w-10 h-10 text-[#5C3F27] mb-3 animate-pulse" />
+        <h4 className="text-sm font-bold text-[#F1E8D9] font-mono mb-1 uppercase tracking-wider">Case Dossier Inspector</h4>
+        <p className="text-xs max-w-[200px] text-[#8C7A68]">
+          Click any pinned note or evidence node to inspect verified citations, stances, and entities.
         </p>
       </div>
     );
@@ -25,18 +25,18 @@ export const GraphInspector: React.FC<GraphInspectorProps> = ({ selectedNode, on
   const { node_type, label, data } = selectedNode;
 
   return (
-    <div className="w-84 h-full bg-[#141B26] border-l border-[#283548] flex flex-col overflow-y-auto">
+    <div className="w-84 h-full bg-[#18130E] border-l border-[#3D291A] flex flex-col overflow-y-auto shadow-2xl">
       {/* Header */}
-      <div className="p-4 border-b border-[#283548] flex items-center justify-between bg-[#1B2331]">
+      <div className="p-4 border-b border-[#3D291A] flex items-center justify-between bg-[#241A12]">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-wider text-[#94A3B8] block">
-            {node_type.replace("_", " ")}
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#D97706] font-bold block">
+            {node_type.replace("_", " ")} • EXHIBIT FILE
           </span>
-          <h3 className="text-xs font-bold text-[#F1F3F7] truncate max-w-[200px]">{label}</h3>
+          <h3 className="text-xs font-bold text-[#F1E8D9] truncate max-w-[200px] font-mono">{label}</h3>
         </div>
         <button
           onClick={onClose}
-          className="p-1 rounded-md text-[#94A3B8] hover:text-[#F1F3F7] hover:bg-[#283548] transition-colors"
+          className="p-1 rounded-md text-[#A3907C] hover:text-[#F1E8D9] hover:bg-[#3D291A] transition-colors"
         >
           <X className="w-4 h-4" />
         </button>

@@ -26,6 +26,7 @@ import {
   Share2,
 } from "lucide-react";
 import { VerdictBadge } from "../VerdictBadge";
+import { PushPin } from "../common/PushPin";
 
 interface TruthGraphCanvasProps {
   graphData: TruthGraphData;
@@ -62,18 +63,12 @@ export const TruthGraphCanvas: React.FC<TruthGraphCanvasProps> = ({
       label: e.label,
       animated: e.edge_type.includes("claim") || e.edge_type.includes("bait"),
       style: {
-        stroke:
-          e.edge_type === "contradicted_by"
-            ? "#E56D68"
-            : e.edge_type === "supported_by"
-            ? "#35AA9E"
-            : e.edge_type === "qualified_by"
-            ? "#DEA44C"
-            : "#6665E8",
-        strokeWidth: 2,
+        stroke: "#DC2626", // Crime-board crimson red yarn
+        strokeWidth: 2.5,
+        filter: "drop-shadow(0 2px 4px rgba(220, 38, 38, 0.6))",
       },
-      labelStyle: { fill: "#94A3B8", fontSize: 10, fontWeight: 500 },
-      labelBgStyle: { fill: "#0B0F17", fillOpacity: 0.8 },
+      labelStyle: { fill: "#FEE2E2", fontSize: 10, fontWeight: 700, fontFamily: "monospace" },
+      labelBgStyle: { fill: "#450A0A", fillOpacity: 0.9, rx: 4, ry: 4 },
     }));
   }, [graphData]);
 
@@ -123,54 +118,54 @@ export const TruthGraphCanvas: React.FC<TruthGraphCanvasProps> = ({
   }, []);
 
   return (
-    <div className="flex flex-col h-[750px] w-full bg-[#0B0F17] border border-[#283548] rounded-xl overflow-hidden shadow-2xl">
+    <div className="flex flex-col h-[750px] w-full bg-[#120E0A] border-4 border-[#2E1F14] rounded-2xl overflow-hidden shadow-2xl corkboard-frame">
       {/* Top Interactive Workspace Toolbar */}
-      <div className="bg-[#141B26] border-b border-[#283548] px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div className="bg-[#1C150F] border-b border-[#3D291A] px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
         {/* Left: View Mode Toggle & Search */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center bg-[#0B0F17] rounded-lg p-0.5 border border-[#283548]">
+          <div className="flex items-center bg-[#0F0B08] rounded-lg p-0.5 border border-[#3D291A]">
             <button
               onClick={() => setViewMode("graph")}
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-colors ${
-                viewMode === "graph" ? "bg-[#1B2331] text-[#F1F3F7] font-semibold" : "text-[#94A3B8]"
+                viewMode === "graph" ? "bg-[#2D1F13] text-[#F59E0B] font-semibold border border-[#5C3F27]" : "text-[#94A3B8]"
               }`}
             >
-              <Network className="w-3.5 h-3.5 text-[#6665E8]" />
+              <Network className="w-3.5 h-3.5 text-[#DC2626]" />
               <span>Canvas</span>
             </button>
             <button
               onClick={() => setViewMode("cards")}
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-colors ${
-                viewMode === "cards" ? "bg-[#1B2331] text-[#F1F3F7] font-semibold" : "text-[#94A3B8]"
+                viewMode === "cards" ? "bg-[#2D1F13] text-[#F59E0B] font-semibold border border-[#5C3F27]" : "text-[#94A3B8]"
               }`}
             >
-              <LayoutGrid className="w-3.5 h-3.5 text-[#6665E8]" />
+              <LayoutGrid className="w-3.5 h-3.5 text-[#DC2626]" />
               <span>List View</span>
             </button>
           </div>
 
           {/* Search box */}
           <div className="relative">
-            <Search className="w-3.5 h-3.5 text-[#94A3B8] absolute left-2.5 top-2.5" />
+            <Search className="w-3.5 h-3.5 text-[#A3907C] absolute left-2.5 top-2.5" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search claims or evidence..."
-              className="bg-[#0B0F17] border border-[#283548] rounded-md pl-8 pr-3 py-1 text-xs text-[#F1F3F7] placeholder-[#64748B] focus:border-[#6665E8] outline-none w-48 sm:w-60"
+              className="bg-[#0F0B08] border border-[#3D291A] rounded-md pl-8 pr-3 py-1 text-xs text-[#F1E8D9] placeholder-[#786452] focus:border-[#D97706] outline-none w-48 sm:w-60 font-mono"
             />
           </div>
         </div>
 
         {/* Right: Filters & Metrics */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 text-[#94A3B8]">
-            <Filter className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-1 text-[#A3907C]">
+            <Filter className="w-3.5 h-3.5 text-[#D97706]" />
             <select
               value={verdictFilter}
               onChange={(e) => setVerdictFilter(e.target.value)}
               aria-label="Filter claims by verdict"
-              className="bg-[#0B0F17] border border-[#283548] text-[#F1F3F7] rounded px-2 py-1 text-xs outline-none"
+              className="bg-[#0F0B08] border border-[#3D291A] text-[#F1E8D9] rounded px-2 py-1 text-xs outline-none font-mono"
             >
               <option value="all">All Verdicts</option>
               <option value="Verified">Verified</option>
@@ -181,15 +176,18 @@ export const TruthGraphCanvas: React.FC<TruthGraphCanvasProps> = ({
             </select>
           </div>
 
-          <div className="text-[11px] text-[#94A3B8] hidden sm:block">
-            <span className="text-[#F1F3F7] font-semibold">{graphData.nodes.length}</span> nodes •{" "}
-            <span className="text-[#F1F3F7] font-semibold">{graphData.edges.length}</span> relationships
+          <div className="text-[11px] text-[#A3907C] font-mono hidden sm:block">
+            <span className="text-[#F59E0B] font-semibold">{graphData.nodes.length}</span> pins •{" "}
+            <span className="text-[#DC2626] font-semibold">{graphData.edges.length}</span> strings
           </div>
         </div>
       </div>
 
       {/* Main Canvas / List Content Area */}
-      <div className="flex-1 flex relative overflow-hidden">
+      <div className="flex-1 flex relative overflow-hidden corkboard-bg">
+        {/* Soft Desk Lamp Light Beam Overlay simulating detective desk lamp */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_85%_10%,rgba(245,158,11,0.18)_0%,transparent_65%)] z-10" />
+
         {viewMode === "graph" ? (
           <div className="flex-1 h-full w-full relative">
             <ReactFlow
@@ -204,23 +202,26 @@ export const TruthGraphCanvas: React.FC<TruthGraphCanvasProps> = ({
               minZoom={0.2}
               maxZoom={2}
             >
-              <Background color="#1B2331" gap={20} size={1} variant={BackgroundVariant.Dots} />
-              <Controls className="!bg-[#141B26] !border-[#283548] !fill-[#F1F3F7] !rounded-lg" />
+              <Background color="#382517" gap={24} size={1.5} variant={BackgroundVariant.Dots} />
+              <Controls className="!bg-[#211A13] !border-[#4A3525] !fill-[#F1E8D9] !rounded-lg !shadow-evidence z-20" />
               <MiniMap
-                className="!bg-[#0B0F17] !border-[#283548] !rounded-lg hidden md:block"
+                className="!bg-[#15100B] !border-[#4A3525] !rounded-lg hidden md:block z-20"
                 nodeColor={(n) => {
-                  if (n.type === "atomic_claim") return "#6665E8";
-                  if (n.type === "verdict") return "#35AA9E";
-                  if (n.type === "evidence") return "#DEA44C";
-                  return "#1B2331";
+                  if (n.type === "atomic_claim") return "#D97706";
+                  if (n.type === "verdict") return "#DC2626";
+                  if (n.type === "evidence") return "#059669";
+                  return "#4A3525";
                 }}
               />
             </ReactFlow>
           </div>
         ) : (
           /* Responsive Card/List Fallback */
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            <h4 className="text-sm font-semibold text-[#F1F3F7] mb-2">Claim & Evidence Index</h4>
+          <div className="flex-1 overflow-y-auto p-6 space-y-4 relative z-20">
+            <h4 className="text-sm font-bold text-[#F1E8D9] font-mono uppercase tracking-wider mb-2 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
+              Claim & Evidence Index
+            </h4>
             {graphData.nodes
               .filter((n) => n.node_type === "atomic_claim")
               .map((c) => (
@@ -234,14 +235,17 @@ export const TruthGraphCanvas: React.FC<TruthGraphCanvasProps> = ({
                       data: c.data,
                     })
                   }
-                  className="bg-[#141B26] border border-[#283548] hover:border-[#6665E8] p-4 rounded-xl cursor-pointer transition-colors"
+                  className="relative bg-[#211C14] border border-[#5A4027] hover:border-[#D97706] p-4 rounded-xl cursor-pointer transition-all shadow-evidence hover:-translate-y-0.5"
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-semibold text-[#6665E8]">Claim #{c.data.position || 1}</span>
+                  <div className="absolute -top-2 left-6">
+                    <PushPin color="yellow" size="sm" />
+                  </div>
+                  <div className="flex items-center justify-between mb-2 pt-1">
+                    <span className="text-xs font-bold text-[#F59E0B] font-mono">Claim #{c.data.position || 1}</span>
                     <VerdictBadge verdict={c.data.verdict} size="sm" />
                   </div>
-                  <p className="text-xs font-medium text-[#F1F3F7] mb-2">{c.data.normalized_claim}</p>
-                  <p className="text-[11px] text-[#94A3B8]">
+                  <p className="text-xs font-medium text-[#F1E8D9] mb-2 font-mono">{c.data.normalized_claim}</p>
+                  <p className="text-[11px] text-[#A89885]">
                     Click to inspect citations and evidence passages.
                   </p>
                 </div>

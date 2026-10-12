@@ -66,7 +66,7 @@ export const VerdictBadge: React.FC<VerdictBadgeProps> = ({
 
   return (
     <span
-      className={`inline-flex items-center rounded-md border ${current.bg} ${current.text} ${current.border} ${sizeClasses[size]} ${className}`}
+      className={`inline-flex items-center rounded-md border-2 font-mono uppercase tracking-wider shadow-sm select-none ${current.bg} ${current.text} ${current.border} ${sizeClasses[size]} ${className}`}
     >
       {showIcon && current.icon}
       <span>{current.label}</span>

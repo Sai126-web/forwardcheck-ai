@@ -1,4 +1,5 @@
 import asyncio
+import uuid
 from datetime import datetime
 from typing import List, Dict, Any, Optional
 from sqlalchemy.orm import Session
@@ -117,7 +118,9 @@ async def execute_investigation_pipeline(investigation_id: str, db: Session, use
                 # Stance Classification
                 stance, relevance_exp = classify_evidence_stance(c_obj.normalized_claim, s_item.get("excerpt", ""))
                 
+                ev_id = str(uuid.uuid4())
                 ev_obj = Evidence(
+                    id=ev_id,
                     claim_id=c_obj.id,
                     source_id=src_obj.id,
                     citation_number=ev_idx + 1,
@@ -126,8 +129,9 @@ async def execute_investigation_pipeline(investigation_id: str, db: Session, use
                     relevance_explanation=relevance_exp
                 )
                 db.add(ev_obj)
+                db.flush()
                 evaluated_evidence_items.append({
-                    "id": ev_obj.id,
+                    "id": ev_id,
                     "stance": stance,
                     "excerpt": s_item.get("excerpt", ""),
                     "relevance_explanation": relevance_exp,

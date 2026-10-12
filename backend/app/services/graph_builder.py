@@ -65,8 +65,8 @@ def build_investigation_graph(
     y_step = 220.0
 
     for idx, claim in enumerate(claims):
-        claim_id = claim.get("id", f"claim-{idx}")
-        claim_node_id = f"node-claim-{claim_id[:8]}"
+        claim_id = str(claim.get("id") or f"claim-{idx}")
+        claim_node_id = f"node-claim-{claim_id[:8]}-{idx}"
         claim_verdict = claim.get("verdict", "Cannot Confirm")
         
         # Claim Node
@@ -98,7 +98,7 @@ def build_investigation_graph(
         })
 
         # Claim Verdict Node
-        verdict_node_id = f"node-verdict-{claim_id[:8]}"
+        verdict_node_id = f"node-verdict-{claim_id[:8]}-{idx}"
         nodes.append({
             "id": verdict_node_id,
             "node_type": "verdict",
@@ -117,8 +117,8 @@ def build_investigation_graph(
         if evidence_items:
             for ev_idx, ev in enumerate(evidence_items):
                 raw_ev_id = ev.get("id")
-                ev_id = str(raw_ev_id) if raw_ev_id else f"ev-{claim_id[:4]}-{ev_idx}"
-                ev_node_id = f"node-evidence-{ev_id[:8]}"
+                ev_id = str(raw_ev_id) if raw_ev_id else f"{claim_id[:8]}-{idx}-{ev_idx}"
+                ev_node_id = f"node-evidence-{claim_id[:8]}-{idx}-{ev_idx}"
                 stance = ev.get("stance", "supports")
                 source = ev.get("source") or {}
 

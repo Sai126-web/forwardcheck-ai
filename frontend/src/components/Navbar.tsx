@@ -36,27 +36,27 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0B0F17]/90 backdrop-blur-md border-b border-[#283548]">
+    <header className="sticky top-0 z-50 bg-[#120E0A]/95 backdrop-blur-md border-b border-[#342418]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Brand */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#6665E8] to-[#4F46E5] flex items-center justify-center text-white shadow-md shadow-[#6665E8]/20 group-hover:scale-105 transition-transform">
-              <ShieldAlert className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-600 via-amber-700 to-red-800 flex items-center justify-center text-amber-100 shadow-md border border-amber-500/50 group-hover:scale-105 transition-transform">
+              <ShieldAlert className="w-5 h-5 text-amber-100" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-bold text-lg text-[#F1F3F7] tracking-tight">ForwardCheck</span>
-                <span className="text-[11px] font-mono px-1.5 py-0.2 rounded bg-[#6665E8]/20 text-[#6665E8] border border-[#6665E8]/30">
-                  AI
+                <span className="font-bold text-lg text-[#F1E8D9] tracking-tight font-mono">ForwardCheck</span>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#DC2626]/20 text-[#EF4444] border border-[#DC2626]/40 uppercase font-bold tracking-wider">
+                  CASE-AI
                 </span>
               </div>
-              <p className="text-[10px] text-[#94A3B8] hidden sm:block">Explore the truth behind the forward</p>
+              <p className="text-[10px] text-[#A3907C] font-mono hidden sm:block">Explore the truth behind the forward</p>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1 font-mono">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
               return (
@@ -65,8 +65,8 @@ export const Navbar: React.FC = () => {
                   href={link.href}
                   className={`flex items-center gap-2 px-3 py-2 rounded-md text-xs font-medium transition-colors ${
                     isActive
-                      ? "bg-[#1B2331] text-[#F1F3F7] border border-[#283548]"
-                      : "text-[#94A3B8] hover:text-[#F1F3F7] hover:bg-[#1B2331]/50"
+                      ? "bg-[#241A12] text-[#F59E0B] border border-[#4D331E]"
+                      : "text-[#A3907C] hover:text-[#F1E8D9] hover:bg-[#1D150F]"
                   }`}
                 >
                   {link.icon}
@@ -77,11 +77,11 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Right Header Status / CTAs */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 font-mono">
             {/* System Status Pill */}
             <div
               title={`Engine Status: ${healthStatus}`}
-              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#141B26] border border-[#283548] text-[11px] text-[#94A3B8]"
+              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#18120C] border border-[#3A281A] text-[11px] text-[#A3907C]"
             >
               <span
                 className={`w-2 h-2 rounded-full ${
@@ -98,9 +98,9 @@ export const Navbar: React.FC = () => {
             {/* Quick Action Button */}
             <Link
               href="/investigations/new"
-              className="inline-flex items-center gap-1.5 bg-[#6665E8] hover:bg-[#5756D1] text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition-all"
+              className="inline-flex items-center gap-1.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white px-3.5 py-1.5 rounded-lg text-xs font-bold shadow-md transition-all tracking-wider"
             >
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-200" />
               <span>Investigate</span>
             </Link>
           </div>

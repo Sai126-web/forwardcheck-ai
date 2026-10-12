@@ -25,13 +25,19 @@ def is_rhetorical_instruction(sentence: str) -> bool:
     """Detect if a sentence is purely a rhetorical forward instruction or emotional plea."""
     patterns = [
         r"forward this to",
+        r"forward\s+(?:to|this|now)",
+        r"share\s+(?:with|to|this|now|everyone)",
         r"share before it gets deleted",
         r"make this viral",
         r"send this to all",
+        r"send to all",
         r"don't break this chain",
         r"if you love your",
         r"shame on you",
         r"press forward",
+        r"wake up and share",
+        r"please forward",
+        r"please share",
     ]
     return any(re.search(p, sentence, re.IGNORECASE) for p in patterns)
 

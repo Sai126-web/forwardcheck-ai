@@ -73,31 +73,33 @@ export default function TruthGraphPage() {
   return (
     <div className="space-y-4">
       {/* Workspace Top Toolbar */}
-      <div className="bg-[#141B26] border border-[#283548] p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-[#18130E] border-2 border-[#3D291A] p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-evidence">
         {/* Left: Investigation Details */}
         <div className="space-y-1.5">
           <div className="flex items-center gap-2 flex-wrap">
             <Link
               href="/investigations"
-              className="text-[#94A3B8] hover:text-[#F1F3F7] inline-flex items-center gap-1 text-xs"
+              className="text-[#A3907C] hover:text-[#F1E8D9] inline-flex items-center gap-1 text-xs font-mono"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>History</span>
             </Link>
-            <span className="text-[#64748B]">•</span>
+            <span className="text-[#5C3F27]">•</span>
             <ModeBadge mode={investigation.execution_mode} />
             <VerdictBadge verdict={investigation.overall_verdict} size="sm" />
           </div>
 
-          <h1 className="text-base font-bold text-[#F1F3F7] line-clamp-1">{investigation.title}</h1>
+          <h1 className="text-base font-bold text-[#F1E8D9] line-clamp-1 font-mono tracking-tight">{investigation.title}</h1>
 
-          <div className="flex items-center gap-3 text-xs text-[#94A3B8]">
+          <div className="flex items-center gap-3 text-xs text-[#A3907C] font-mono">
             <span>
               Bait Index:{" "}
-              <strong className="text-[#9670D7] font-mono">{investigation.bait_score}/100</strong>
+              <strong className="text-[#C084FC] font-mono">{investigation.bait_score}/100</strong>
             </span>
             <span>•</span>
             <span>{investigation.claims.length} Atomic Claims</span>
+            <span>•</span>
+            <span className="text-[#D97706]">Evidence Corkboard Active</span>
           </div>
         </div>
 
@@ -105,7 +107,7 @@ export default function TruthGraphPage() {
         <div className="flex items-center gap-2.5">
           <button
             onClick={handleShare}
-            className="flex items-center gap-1.5 bg-[#1B2331] hover:bg-[#283548] text-[#F1F3F7] px-3 py-1.5 rounded-lg text-xs font-semibold border border-[#283548] transition-colors"
+            className="flex items-center gap-1.5 bg-[#241A12] hover:bg-[#342418] text-[#F1E8D9] px-3 py-1.5 rounded-lg text-xs font-semibold border border-[#4A3220] transition-colors font-mono"
           >
             {copiedShare ? (
               <>
@@ -114,7 +116,7 @@ export default function TruthGraphPage() {
               </>
             ) : (
               <>
-                <Share2 className="w-3.5 h-3.5 text-[#6665E8]" />
+                <Share2 className="w-3.5 h-3.5 text-[#D97706]" />
                 <span>Share Graph</span>
               </>
             )}
@@ -122,7 +124,7 @@ export default function TruthGraphPage() {
 
           <Link
             href={`/investigations/${id}/report`}
-            className="flex items-center gap-1.5 bg-[#6665E8] hover:bg-[#5756D1] text-white px-4 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition-all"
+            className="flex items-center gap-1.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white px-4 py-1.5 rounded-lg text-xs font-semibold shadow-md transition-all font-mono"
           >
             <FileText className="w-3.5 h-3.5" />
             <span>Full Forensic Report</span>
