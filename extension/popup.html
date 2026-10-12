@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ForwardCheck AI</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="header">
+      <div class="logo-area">
+        <div class="logo-badge">FC</div>
+        <div>
+          <h1 class="brand-title">ForwardCheck AI</h1>
+          <p class="tagline">Don’t just check the claim. Explore the truth behind it.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="field-group">
+        <label for="claim-input" class="label">Content to Verify:</label>
+        <textarea id="claim-input" class="textarea" rows="4" placeholder="Highlight text on the page or paste suspicious forward here..."></textarea>
+      </div>
+
+      <div class="field-group">
+        <label for="url-input" class="label">Source Webpage URL (optional):</label>
+        <input type="text" id="url-input" class="input" placeholder="https://..." />
+      </div>
+
+      <div class="actions">
+        <button id="capture-btn" class="btn btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          Grab Selected Text
+        </button>
+        <button id="verify-btn" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Open in Investigation Lab
+        </button>
+      </div>
+
+      <div id="status-message" class="status-msg hidden"></div>
+    </main>
+
+    <footer class="footer">
+      <span>Evidence-Grounded • TruthGraph™ • Bait Index</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

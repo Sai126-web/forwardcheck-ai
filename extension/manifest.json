@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "ForwardCheck AI — Claim & Forward Inspector",
+  "version": "1.0.0",
+  "description": "Investigate suspicious forwards, viral claims, and web articles with inspectable evidence and TruthGraph.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ForwardCheck AI Verification"
+  }
+}

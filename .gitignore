@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Next.js
+.next/
+out/
+
+# Database & Environments
+forwardcheck.db
+.env
+.env.local
+
+# Testing & Cache
+.pytest_cache/
+test-results/
+playwright-report/
