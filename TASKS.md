@@ -73,9 +73,10 @@ Overall Status: Complete & Verified
   - Handoff to web app at `/investigations/new` `Verified`
   - Installation and testing guide `Verified`
 
-## Phase 6: Testing, Quality Assurance & Verification
-- [x] Backend unit & integration tests with Pytest (16/16 Passed) `Verified`
-- [x] Frontend production build and type-checking (15/15 Routes Compiled) `Verified`
-- [x] End-to-end user journey live verification (Submission -> Pipeline -> Telemetry -> Graph -> Report) `Verified`
-- [x] Accessibility & responsive layout audit `Verified`
-- [x] Complete documentation: `README.md`, `ARCHITECTURE.md`, `DECISIONS.md`, `API.md`, `SECURITY.md`, `PRIVACY.md`, `DEPLOYMENT.md`, `TEST_REPORT.md`, `LIVE_TEST_REPORT.md`, `KNOWN_LIMITATIONS.md` `Verified`
+## Phase 7: Live Evidence Retrieval, Detective UI & Deployment
+- [x] Live Web Retrieval Engine: DuckDuckGo Lite & Wikipedia Encyclopedic Search APIs `Verified`
+- [x] Canonical Stance & Verdict Engine: Genuine evaluation (`False`, `Verified`, `Partially Supported`, etc.) with `execution_mode: "live"` `Verified`
+- [x] Detective Noir Corkboard Theme: Cork texture, pushpins, red string connections, kraft card badges, dossier styling `Verified`
+- [x] GitHub Repository Created & Synced: `https://github.com/Sai126-web/forwardcheck-ai` `Verified`
+- [x] Vercel Zero-Config Deployment: `frontend/vercel.json`, `next.config.mjs` reverse-proxy `Verified`
+
